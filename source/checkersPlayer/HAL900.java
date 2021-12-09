@@ -372,6 +372,12 @@ public class HAL900 implements CheckersPlayerInterface {
 		branchingCount = 1;
 
 		List<Byte> indices = new LinkedList<Byte>();
+		getSearchInt(indices);
+
+		return indices.get((int) (Math.random() * indices.size()));
+	}
+
+	private static getSearchInt(List<Byte> indices){
 		indices.add((byte) 0);
 		float maxValue = Float.NEGATIVE_INFINITY;
 
@@ -384,8 +390,8 @@ public class HAL900 implements CheckersPlayerInterface {
 				indices.add(i);
 			} else if (Math.abs(value - maxValue) < THRESHOLD)
 				indices.add(i);
-		}
+		}~
 
-		return indices.get((int) (Math.random() * indices.size()));
+		return indices;
 	}
 }
