@@ -127,8 +127,6 @@ public class BadCheckersPlayer implements CheckersPlayerInterface {
 			int drawspace2 = 0;
 			int lamespace = 0;
 			int yawnspace = 0;
-
-			
 			for (int row = 0; row < 8; row++) {
 				for (int col = 0; col < 8; col++) {
 					byte contentsOfBoardSpace = currB.getPiece(row, col);
@@ -167,29 +165,29 @@ public class BadCheckersPlayer implements CheckersPlayerInterface {
 			// heuristicValue = -(myChecker * myPieces - enemyChecker * myPieces
 			// +
 			// myKing * myKings - enemyKing * myKings);
+			float contaMyCheckerPieces(){
+				return (myChecker * myPieces * 0.95)- (enemyChecker * myPieces * 0.95);
+			}
+
+			float contaMyKingSpace(){
+				((myKing - drawspace1) * myKings) + ((myKing - drawspace2) * myKings);
+			}
+
 			if (win) {
 				currB.freeCache();
-				return (float) (-((myChecker * myPieces * 0.95)
-						- (enemyChecker * myPieces * 0.95)
-						+ ((myKing - trapspace) * myKings)
+				return (float) (-(contaMyCheckerPieces() + ((myKing - trapspace) * myKings)
 						- ((enemyKing - yawnspace) * myKings)
 						+ (trapspace * myWeight) - (yawnspace * myWeight)) + (numPieces2(currB) * myTrade));
 			} else {
 				if (drawspace1 == 2 || drawspace2 == 2) {
 					currB.freeCache();
-					return (float) (-((myChecker * myPieces * 0.95)
-							- (enemyChecker * myPieces * 0.95)
-							+ ((myKing - drawspace1) * myKings)
-							+ ((myKing - drawspace2) * myKings)
+					return (float) (-(contaMyCheckerPieces() + contaMyKingSpace()
 							- ((enemyKing - lamespace) * myKings)
 							+ ((drawspace1 + drawspace2) / 2 * myWeight) - (lamespace * myWeight)));
 
 				} else {
 					currB.freeCache();
-					return (float) (-((myChecker * myPieces * 0.95)
-							- (enemyChecker * myPieces * 0.95)
-							+ ((myKing - drawspace1) * myKings)
-							+ ((myKing - drawspace2) * myKings)
+					return (float) (-(contaMyCheckerPieces() + contaMyKingSpace()
 							- ((enemyKing - lamespace) * myKings)
 							+ (drawspace1 * myWeight) + (drawspace2 * myWeight) - (lamespace * myWeight)));
 				}
