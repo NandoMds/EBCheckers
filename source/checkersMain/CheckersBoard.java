@@ -70,22 +70,22 @@ public abstract class CheckersBoard implements Cloneable {
 		@Override
 		public String toString() {
 			StringBuffer strBuff;
-
 			getStrBuff(strBuff);
-
 			return strBuff.toString();
 		}
+	}
 
-		private static StrBuff getStrBuff(StringBuffer strBuff){
-			strBuff = new StringBuffer(getClass().getSimpleName());
-			strBuff.append(" [");
-			for (int i = 0; i < boardIndices.length; i++) {
-				strBuff.append(boardIndices[i]);
-				if (i < boardIndices.length - 1)
-					strBuff.append(',');
-			}
-			strBuff.append(']');
+	private static StrBuff getStrBuff(StringBuffer strBuff){
+		strBuff = new StringBuffer(getClass().getSimpleName());
+		strBuff.append(" [");
+		for (int i = 0; i < boardIndices.length; i++) {
+			strBuff.append(boardIndices[i]);
+			if (i < boardIndices.length - 1)
+				strBuff.append(',');
 		}
+		strBuff.append(']');
+
+		return strBuff;
 	}
 
 	/**
@@ -560,7 +560,15 @@ public abstract class CheckersBoard implements Cloneable {
 
 	@Override
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
+		StringBuffer sb;
+
+		getStringBuffer(sb);
+
+		return sb.toString();
+	}
+
+	private static StringBuffer getStringBuffer(StringBuffer sb){
+		sb = new StringBuffer();
 
 		sb.append("---------------------------------\n");
 		for (int i = 0; i < 32;) {
@@ -583,6 +591,6 @@ public abstract class CheckersBoard implements Cloneable {
 			sb.append(" |\n---------------------------------\n");
 		}
 
-		return sb.toString();
+		return sb;
 	}
 }
