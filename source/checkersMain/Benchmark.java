@@ -68,8 +68,12 @@ public final class Benchmark {
 
 			float heuristicValue = player1Value + player2Value;
 
-			int maxLevels = Math.max(1, levels / 2);
-			int minLevels = Math.max(1, levels / 2);
+			int contaMathMax(){
+				return Math.max(1, levels / 2);
+			}
+
+			int maxLevels = contaMathMax();
+			int minLevels = contaMathMax();
 			if (max)
 				maxLevels++;
 			heuristicValue += MOVES_FACTOR

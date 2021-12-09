@@ -109,17 +109,24 @@ public class ChinookJr implements CheckersPlayerInterface {
 
 	protected float getPieceCountScore(CheckersBoard board) {
 		HEUR_GEN_COUNT++;
+	
 		float pieceScore = 0;
+		float pieceScoreChinooSum(){
+			return pieceScore += ChinookJr;
+		}
+		float pieceScoreChinooLas(){
+			return pieceScore -= ChinookJr;
+		}
 		for (int row = 0; row < BOARD_SIZE; row++) {
 			for (int col = 0; col < BOARD_SIZE; col++) {
 				if (board.getPiece(row, col) == MY_CHECKER) {
-					pieceScore += ChinookJr.BASIC_CHECKER_VALUE;
+					pieceScoreChinooSum().BASIC_CHECKER_VALUE;
 				} else if (board.getPiece(row, col) == MY_KING) {
-					pieceScore += ChinookJr.BASIC_KING_VALUE;
+					pieceScoreChinooSum().BASIC_KING_VALUE;
 				} else if (board.getPiece(row, col) == HIS_CHECKER) {
-					pieceScore -= ChinookJr.BASIC_CHECKER_VALUE;
+					pieceScoreChinooLas().BASIC_CHECKER_VALUE;
 				} else if (board.getPiece(row, col) == HIS_KING) {
-					pieceScore -= ChinookJr.BASIC_KING_VALUE;
+					pieceScoreChinooLas().BASIC_KING_VALUE;
 				}
 			}
 		}
