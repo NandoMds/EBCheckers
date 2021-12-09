@@ -127,6 +127,8 @@ public class BadCheckersPlayer implements CheckersPlayerInterface {
 			int drawspace2 = 0;
 			int lamespace = 0;
 			int yawnspace = 0;
+
+			
 			for (int row = 0; row < 8; row++) {
 				for (int col = 0; col < 8; col++) {
 					byte contentsOfBoardSpace = currB.getPiece(row, col);
