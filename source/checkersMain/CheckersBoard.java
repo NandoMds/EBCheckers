@@ -69,7 +69,15 @@ public abstract class CheckersBoard implements Cloneable {
 
 		@Override
 		public String toString() {
-			StringBuffer strBuff = new StringBuffer(getClass().getSimpleName());
+			StringBuffer strBuff;
+
+			getStrBuff(strBuff);
+
+			return strBuff.toString();
+		}
+
+		private static StrBuff getStrBuff(StringBuffer strBuff){
+			strBuff = new StringBuffer(getClass().getSimpleName());
 			strBuff.append(" [");
 			for (int i = 0; i < boardIndices.length; i++) {
 				strBuff.append(boardIndices[i]);
@@ -77,7 +85,6 @@ public abstract class CheckersBoard implements Cloneable {
 					strBuff.append(',');
 			}
 			strBuff.append(']');
-			return strBuff.toString();
 		}
 	}
 
